@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 #****************************************************************************************************************************************************
 #* BSD 3-Clause License
 #*
@@ -26,6 +26,8 @@ import json
 import os
 from TPConvert.FormatPluginCSharp import FormatPluginCSharp
 from TPConvert.FormatPluginFslAtlas import FormatPluginFslAtlas
+from TPConvert.FormatPluginBinaryTA1 import FormatPluginBinaryTA1
+from TPConvert.FormatPluginBinaryTA2 import FormatPluginBinaryTA2
 from TPConvert.IOUtil import *
 from TPConvert.TexturePackerObjects import *
 
@@ -35,7 +37,7 @@ __g_allowDevelopmentPlugins = False
 
 
 def GetTitle():
-    return 'TPConvert V0.1.0 alpha'
+    return 'TPConvert V0.1.1 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -94,7 +96,7 @@ def EarlyArgumentParser():
 
 
 def GetPluginList(allowDevPlugins):
-    res = [ FormatPluginCSharp(), FormatPluginFslAtlas() ]
+    res = [ FormatPluginCSharp(), FormatPluginFslAtlas(), FormatPluginBinaryTA1(), FormatPluginBinaryTA2()]
     return res;
 
 

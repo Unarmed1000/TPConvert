@@ -13,7 +13,7 @@
     <Name>TPConvert</Name>
     <RootNamespace>TPConvert</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-f fsl -v TestAtlas.json test</CommandLineArguments>
+    <CommandLineArguments>-f bta1 -v TestAtlas.json test --debug</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -26,7 +26,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="TPConvert.py" />
+    <Compile Include="TPConvert\FormatPluginBinaryTAUtil.py" />
     <Compile Include="TPConvert\FormatPlugin.py" />
+    <Compile Include="TPConvert\FormatPluginBinaryTA1.py" />
+    <Compile Include="TPConvert\FormatPluginBinaryTA2.py" />
     <Compile Include="TPConvert\FormatPluginFslAtlas.py" />
     <Compile Include="TPConvert\FormatPluginCSharp.py" />
     <Compile Include="TPConvert\IOUtil.py" />

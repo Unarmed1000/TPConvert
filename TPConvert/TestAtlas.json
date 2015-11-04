@@ -10,6 +10,51 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
+	"filename": "Buttons/2/3/BigBar.png",
+	"frame": {"x":2,"y":2,"w":629,"h":84},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":8,"w":629,"h":84},
+	"sourceSize": {"w":644,"h":100},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "Buttons/2/4/BigBar.png",
+	"frame": {"x":2,"y":2,"w":629,"h":84},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":8,"w":629,"h":84},
+	"sourceSize": {"w":644,"h":100},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "Buttons/3/a/BigBar.png",
+	"frame": {"x":2,"y":2,"w":629,"h":84},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":8,"w":629,"h":84},
+	"sourceSize": {"w":644,"h":100},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "Buttons/3/BigBar.png",
+	"frame": {"x":2,"y":2,"w":629,"h":84},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":8,"w":629,"h":84},
+	"sourceSize": {"w":644,"h":100},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "Buttons/4/BigBar.png",
+	"frame": {"x":2,"y":2,"w":629,"h":84},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":8,"w":629,"h":84},
+	"sourceSize": {"w":644,"h":100},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "Buttons/ButtonGlass.png",
 	"frame": {"x":633,"y":47,"w":147,"h":84},
 	"rotated": false,
