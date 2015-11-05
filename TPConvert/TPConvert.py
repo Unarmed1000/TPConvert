@@ -37,7 +37,7 @@ __g_allowDevelopmentPlugins = False
 
 
 def GetTitle():
-    return 'TPConvert V0.1.1 alpha'
+    return 'TPConvert V0.1.2 alpha'
 
 
 def ShowTitleIfNecessary():

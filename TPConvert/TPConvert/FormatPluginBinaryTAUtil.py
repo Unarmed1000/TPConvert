@@ -94,6 +94,8 @@ def AddString(list, value):
 
 
 def AddRectangle(list, valueX, valueY, valueWidth, valueHeight):
+    if( valueWidth < 0 or valueHeight < 0):
+        raise Exception("Unsupported rect")
     AddEncodedInt32(list, valueX)
     AddEncodedInt32(list, valueY)
     AddEncodedUInt32(list, valueWidth)
