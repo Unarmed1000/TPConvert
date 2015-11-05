@@ -34,6 +34,19 @@ def AddByteToList(list, value):
     list.append(value & 0xFF)
 
 
+def SetByteInList(list, index, value):
+    if( value < 0 or value > 255 ):
+        raise Exception("Invalid value")
+    list[index] = value & 0xFF
+
+
+def SetUInt32(list, index, value):
+    SetByteInList(list, index, value & 0xFF)
+    SetByteInList(list, index + 1, (value & 0xFF00) >> 8)
+    SetByteInList(list, index + 2, (value & 0xFF0000) >> 16)
+    SetByteInList(list, index + 3, (value & 0xFF000000) >> 24)
+
+
 def AddUInt32(list, value):
     AddByteToList(list, value & 0xFF)
     AddByteToList(list, (value & 0xFF00) >> 8)
@@ -49,7 +62,12 @@ def AddInt32(list, value):
 
 def AddEncodedInt32(list, value):
     # ZigZag encode signed numbers
-    return AddEncodedUInt32(list, ((value << 1) & 0xFFFFFFFF) ^ ((value >> 31) & 0xFFFFFFFF));
+    # While this "(value << 1) ^ (value >> 31)" might be more optimal its very dependent on how the language handles sign extension when downshifting
+    # so a 'safe' implementation was chosen
+   if value >= 0:
+        return AddEncodedUInt32(list, value << 1);
+   else:
+        return AddEncodedUInt32(list, (value << 1) ^ (~0))
 
 # Encodes a integer into a variable length encoding where the length can be determined from the first byte.
 # in a way that favors small values. 

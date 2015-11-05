@@ -40,6 +40,10 @@ class FormatPluginBinaryTA2(FormatPlugin):
 
         list = []
         AddHeader(list, 2);
+        # make room for a number of bytes written entry and store the offset where it was written so we can pacth it later
+        offset = len(list)
+        AddUInt32(list, 0);
+
         self.__AddPathList(list, pathInfo[0])
 
         AddEncodedUInt32(list, len(atlas.Entries))
@@ -49,6 +53,11 @@ class FormatPluginBinaryTA2(FormatPlugin):
             rectWidth = entry.SourceSize.Width
             rectHeight = entry.SourceSize.Height
             self.__AddEntry(list, rectX, rectY, rectWidth, rectHeight, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height, entryDict[entry.FullFilenameWithoutExt])
+
+        # Write the number of bytes that were written to the extended header
+        # -4 because we dont count the 'size' entry
+        bytesWritten = len(list) - offset - 4
+        SetUInt32(list, offset, bytesWritten)
 
         content = bytearray(list)
         outputFilename = '%s.%s' % (outputFilename, 'bta')
