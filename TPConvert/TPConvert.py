@@ -37,7 +37,7 @@ __g_allowDevelopmentPlugins = False
 
 
 def GetTitle():
-    return 'TPConvert V0.1.4 alpha'
+    return 'TPConvert V0.1.5 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -96,7 +96,7 @@ def EarlyArgumentParser():
 
 
 def GetPluginList(allowDevPlugins):
-    res = [ FormatPluginCSharp(), FormatPluginFslAtlas(), FormatPluginBinaryTA1(), FormatPluginBinaryTA2()]
+    res = [ FormatPluginCSharp(), FormatPluginCSharp(True), FormatPluginFslAtlas(), FormatPluginBinaryTA1(), FormatPluginBinaryTA2()]
     return res;
 
 

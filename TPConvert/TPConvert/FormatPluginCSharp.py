@@ -26,10 +26,12 @@ from TPConvert import IOUtil
 
 
 class FormatPluginCSharp(FormatPlugin):
-    def __init__(self):
-        super(FormatPluginCSharp, self).__init__("C#")
+    def __init__(self, enableScaleMod=False):
+        super(FormatPluginCSharp, self).__init__("C#" if not enableScaleMod else "C#Scale")
+        self.__EnableScaleMod = enableScaleMod
 
     def Process(self, atlas, outputFilename):
+        enableScale = self.__EnableScaleMod
         list = []
         list.append('using System;')
         list.append('using System.Collections.Generic;')
@@ -41,6 +43,9 @@ class FormatPluginCSharp(FormatPlugin):
         list.append('  class %sTextureAtlas : ITextureAtlasInfo' % (atlas.Name))
         list.append('  {')
         list.append('    public const string TheTextureName = "%s";' % (atlas.Name))
+        if enableScale:
+            list.append('    public const int SCALE_X = 1;')
+            list.append('    public const int SCALE_Y = 1;')
         list.append('')
         list.append('    public static readonly Dictionary<string,AtlasTextureInfo> TheTextureInfo = new Dictionary<string,AtlasTextureInfo>()')
         list.append('    {')
@@ -50,7 +55,10 @@ class FormatPluginCSharp(FormatPlugin):
             rectY = entry.Frame.Y - entry.SpriteSourceSize.Y
             rectWidth = entry.SourceSize.Width
             rectHeight = entry.SourceSize.Height
-            list.append('      { "%s", new AtlasTextureInfo(new Rectangle(%s, %s, %s, %s), new Rectangle(%s, %s, %s, %s)) },' % (entry.FullFilenameWithoutExt, rectX, rectY, rectWidth, rectHeight, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height))
+            if not enableScale:
+                list.append('      { "%s", new AtlasTextureInfo(new Rectangle(%s, %s, %s, %s), new Rectangle(%s, %s, %s, %s)) },' % (entry.FullFilenameWithoutExt, rectX, rectY, rectWidth, rectHeight, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height))
+            else:
+                list.append('      { "%s", new AtlasTextureInfo(new Rectangle(%s * SCALE_X, %s * SCALE_Y, %s * SCALE_X, %s * SCALE_Y), new Rectangle(%s * SCALE_X, %s * SCALE_Y, %s * SCALE_X, %s * SCALE_Y)) },' % (entry.FullFilenameWithoutExt, rectX, rectY, rectWidth, rectHeight, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height))
 
         list.append('    };')
         list.append('')
