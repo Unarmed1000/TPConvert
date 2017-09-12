@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python
+﻿#!/usr/bin/env python3
 #****************************************************************************************************************************************************
 #* BSD 3-Clause License
 #*
@@ -112,7 +112,7 @@ class FormatPluginBinaryTA2(FormatPlugin):
 
     def __BuildPathList(self, listDirs, listFiles, dict, parentIndex, startIndex, parentName):
         totalIndex = startIndex
-        for item in dict.iteritems():
+        for item in dict.items():
             if len(item[1]) == 0:
                 listFiles.append([parentIndex, item[0], parentName])
             else:
@@ -120,7 +120,7 @@ class FormatPluginBinaryTA2(FormatPlugin):
                 totalIndex = totalIndex + 1
 
         count2 = startIndex
-        for items in dict.iteritems():
+        for items in dict.items():
             if len(items[1]) > 0:
                 totalIndex = self.__BuildPathList(listDirs, listFiles, items[1], count2, totalIndex, parentName + items[0] + "/" )
                 count2 = count2 + 1
