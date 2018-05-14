@@ -37,7 +37,7 @@ __g_allowDevelopmentPlugins = False
 
 
 def GetTitle():
-    return 'TPConvert V0.2.0 alpha'
+    return 'TPConvert V0.2.1 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -50,7 +50,7 @@ def GetEntryByName(list, name):
     for entry in list:
         if entry.Name == name:
             return entry
-    raise Exception("Unknown plugin '%s'" % (name))
+    raise Exception("Unknown plugin '{0}'".format(name))
 
 
 def Process(formatPlugins, inputFilename, outputFilename, formatName):
