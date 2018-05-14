@@ -13,7 +13,7 @@
     <Name>TPConvert</Name>
     <RootNamespace>TPConvert</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-f bta1 -v MiniCards2.json test --debug</CommandLineArguments>
+    <CommandLineArguments>-f C#Scale -v MiniCards2.json test --debug</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
