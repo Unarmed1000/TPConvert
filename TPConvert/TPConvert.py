@@ -117,7 +117,7 @@ def Main():
     ### Add the main command line arguments
     parser = argparse.ArgumentParser(description='Convert TexturePacker JSON(array) files into a custom native format.')
     AddDefaultOptions(parser)
-    parser.add_argument('-f', '--format', default=plugins[0].Name,  help='Select format %s' % (", ".join(GetNames(plugins))))
+    parser.add_argument('-f', '--format', default=plugins[0].Name,  help='Select format {0}'.format(", ".join(GetNames(plugins))))
     parser.add_argument("inputFile", help="the name of the input file")
     parser.add_argument("outputFile", nargs='?', default=None, help="the name of the output file")
 
@@ -131,7 +131,7 @@ def Main():
             raise
     except (Exception) as ex:
         ShowTitleIfNecessary()
-        print("ERROR: {0}".format(ex.message))
+        print("ERROR: {0}".format(ex))
         if __g_debugEnabled:
             raise
     return
