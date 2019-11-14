@@ -2,4 +2,6 @@
 /TPConvert/TPConvert/*.pyc
 /TPConvert/*.pyc
 /TPConvert/TPConvert.pyproj.user
-/.vs/TPConvert/v14
+/.vs/
+/TPConvert/.mypy_cache/
+/TPConvert/TPConvert/__pycache__

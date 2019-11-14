@@ -21,34 +21,38 @@
 #* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #****************************************************************************************************************************************************
 
+import datetime
 from TPConvert.FormatPlugin import FormatPlugin
 from TPConvert.TexturePackerObjects import TexturePackerAtlas
 from TPConvert import IOUtil
 
 
-class FormatPluginCSharp(FormatPlugin):
-    def __init__(self, enableScaleMod: bool = False) -> None:
-        super().__init__("C#" if not enableScaleMod else "C#Scale")
-        self.__EnableScaleMod = enableScaleMod
+class FormatPluginCSharp2(FormatPlugin):
+    def __init__(self) -> None:
+        super().__init__("C#2")
 
     def Process(self, atlas: TexturePackerAtlas, dpi: int, outputFilename: str) -> None:
-        enableScale = self.__EnableScaleMod
+        dateNow = datetime.datetime.now()
+        srcDP = 640
         list = []
-        list.append('using System;')
+        list.append('//****************************************************************************************************************************************************')
+        list.append('//* File Description')
+        list.append('//* ----------------')
+        list.append('//*')
+        list.append('//* (c) {0} company_name_here'.format(dateNow.year))
+        list.append('//****************************************************************************************************************************************************')
+        list.append('')
+        list.append('using MB.Base.MathEx;')
+        list.append('using MB.Graphics2.TextureAtlas;')
         list.append('using System.Collections.Generic;')
-        list.append('using Microsoft.Xna.Framework;')
-        list.append('using MB.Base.Xna;')
         list.append('')
         list.append('namespace MB')
         list.append('{')
-        list.append('  class %sTextureAtlas : ITextureAtlasInfo' % (atlas.Name))
+        list.append('  class {0}TextureAtlas : TextureAtlasBase'.format(atlas.Name))
         list.append('  {')
-        list.append('    public const string TheTextureName = "%s";' % (atlas.Name))
-        if enableScale:
-            list.append('    public const int SCALE_X = 1;')
-            list.append('    public const int SCALE_Y = 1;')
+        list.append('    public const string SourceTextureName = "{0}";'.format(atlas.Name))
         list.append('')
-        list.append('    public static readonly Dictionary<string,AtlasTextureInfo> TheTextureInfo = new Dictionary<string,AtlasTextureInfo>()')
+        list.append('    public static readonly Dictionary<string, TextureAtlasImageInfo> SourceTextureInfo = new Dictionary<string, TextureAtlasImageInfo>()')
         list.append('    {')
 
         for entry in atlas.Entries:
@@ -56,17 +60,21 @@ class FormatPluginCSharp(FormatPlugin):
             rectY = entry.Frame.Y - entry.SpriteSourceSize.Y
             rectWidth = entry.SourceSize.Width
             rectHeight = entry.SourceSize.Height
-            if not enableScale:
-                list.append('      { "%s", new AtlasTextureInfo(new Rectangle(%s, %s, %s, %s), new Rectangle(%s, %s, %s, %s)) },' % (entry.FullFilenameWithoutExt, rectX, rectY, rectWidth, rectHeight, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height))
+            if srcDP == 160:
+                list.append('      {{ "{0}", new TextureAtlasImageInfo(new Rectangle({1}, {2}, {3}, {4}), new Rectangle({5}, {6}, {7}, {8})) }},'.format(entry.FullFilenameWithoutExt, rectX, rectY, rectWidth, rectHeight, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height))
             else:
-                list.append('      { "%s", new AtlasTextureInfo(new Rectangle(%s * SCALE_X, %s * SCALE_Y, %s * SCALE_X, %s * SCALE_Y), new Rectangle(%s * SCALE_X, %s * SCALE_Y, %s * SCALE_X, %s * SCALE_Y)) },' % (entry.FullFilenameWithoutExt, rectX, rectY, rectWidth, rectHeight, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height))
+                list.append('      {{ "{0}", new TextureAtlasImageInfo(new Rectangle({1}, {2}, {3}, {4}), new Rectangle({5}, {6}, {7}, {8}), {9}) }},'.format(entry.FullFilenameWithoutExt, rectX, rectY, rectWidth, rectHeight, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height, srcDP))
 
         list.append('    };')
         list.append('')
-        list.append('    public string TextureName { get { return TheTextureName; } }')
-        list.append('    public Dictionary<string,AtlasTextureInfo> TextureInfo { get { return TheTextureInfo; } }')
+        list.append('    public {0}TextureAtlas()'.format(atlas.Name))
+        list.append('      : base(SourceTextureName, SourceTextureInfo)')
+        list.append('    {')
+        list.append('    }')
         list.append('  }')
         list.append('}')
+        list.append('')
+        list.append('//****************************************************************************************************************************************************')
 
         content = '\n'.join(list)
 

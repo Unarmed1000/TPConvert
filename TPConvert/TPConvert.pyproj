@@ -8,12 +8,12 @@
     <StartupFile>TPConvert.py</StartupFile>
     <SearchPath>
     </SearchPath>
-    <WorkingDirectory>e:\code\resources\Graphics\CardGames\CardsHD\Atlas\</WorkingDirectory>
+    <WorkingDirectory>e:\code\resources\Graphics\CardGames\NewUI</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>TPConvert</Name>
     <RootNamespace>TPConvert</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-f C#Scale -v MiniCards2.json test --debug</CommandLineArguments>
+    <CommandLineArguments>-f C#2 -v Avatars.json Avatars --debug --dpi 640</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
@@ -31,6 +31,7 @@
     <Compile Include="TPConvert\FormatPlugin.py" />
     <Compile Include="TPConvert\FormatPluginBinaryTA1.py" />
     <Compile Include="TPConvert\FormatPluginBinaryTA2.py" />
+    <Compile Include="TPConvert\FormatPluginCSharp2.py" />
     <Compile Include="TPConvert\FormatPluginFslAtlas.py" />
     <Compile Include="TPConvert\FormatPluginCSharp.py" />
     <Compile Include="TPConvert\IOUtil.py" />
