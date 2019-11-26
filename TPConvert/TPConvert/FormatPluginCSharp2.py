@@ -48,7 +48,7 @@ class FormatPluginCSharp2(FormatPlugin):
         list.append('')
         list.append('namespace MB')
         list.append('{')
-        list.append('  class {0}TextureAtlas : TextureAtlasBase'.format(atlas.Name))
+        list.append('  class {0} : TextureAtlasBase'.format(atlas.Name))
         list.append('  {')
         list.append('    public const string SourceTextureName = "{0}";'.format(atlas.Name))
         list.append('')
@@ -67,7 +67,7 @@ class FormatPluginCSharp2(FormatPlugin):
 
         list.append('    };')
         list.append('')
-        list.append('    public {0}TextureAtlas()'.format(atlas.Name))
+        list.append('    public {0}()'.format(atlas.Name))
         list.append('      : base(SourceTextureName, SourceTextureInfo)')
         list.append('    {')
         list.append('    }')
