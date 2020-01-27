@@ -41,7 +41,7 @@ __g_allowDevelopmentPlugins = False
 
 
 def GetTitle() -> str:
-    return 'TPConvert V0.2.6 alpha'
+    return 'TPConvert V0.2.7 alpha'
 
 
 def ShowTitleIfNecessary() -> None:
@@ -68,7 +68,7 @@ def Process(formatPlugins: List[FormatPlugin], inputFilename: str, outputFilenam
     jsonDict = json.loads(content)
     atlas = TexturePackerAtlas(jsonDict)
 
-    formatPlugin.Process(atlas, dpi, outputFilename)
+    formatPlugin.Process(atlas, int(dpi), outputFilename)
 
 
 def AddDefaultOptions(parser: argparse.ArgumentParser) -> None:

@@ -39,14 +39,14 @@ class FormatPluginFslAtlas(FormatPlugin):
     def __init__(self) -> None:
         super().__init__("fsl")
 
-    def Process(self, atlas: TexturePackerAtlas, outputFilename: str) -> None:
+    def Process(self, atlas: TexturePackerAtlas, srcDP: int, outputFilename: str) -> None:
         hppOutputFilename = '{0}.{1}'.format(outputFilename, 'hpp')
         cppOutputFilename = '{0}.{1}'.format(outputFilename, 'cpp')
 
         className = IOUtil.GetFileNameWithoutExtension(outputFilename)
 
         hppContent = self.__BuildHPPContent(atlas, className)
-        cppContent = self.__BuildCPPContent(atlas, className)
+        cppContent = self.__BuildCPPContent(atlas, srcDP, className)
         IOUtil.WriteFileIfChanged(hppOutputFilename, hppContent)
         IOUtil.WriteFileIfChanged(cppOutputFilename, cppContent)
 

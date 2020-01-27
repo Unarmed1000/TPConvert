@@ -31,9 +31,8 @@ class FormatPluginCSharp2(FormatPlugin):
     def __init__(self) -> None:
         super().__init__("C#2")
 
-    def Process(self, atlas: TexturePackerAtlas, dpi: int, outputFilename: str) -> None:
+    def Process(self, atlas: TexturePackerAtlas, srcDP: int, outputFilename: str) -> None:
         dateNow = datetime.datetime.now()
-        srcDP = 640
         list = []
         list.append('//****************************************************************************************************************************************************')
         list.append('//* File Description')

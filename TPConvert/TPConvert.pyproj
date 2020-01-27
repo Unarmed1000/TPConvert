@@ -13,7 +13,7 @@
     <Name>TPConvert</Name>
     <RootNamespace>TPConvert</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-f C#3 -v e:\code\tools\TPConvert\TPConvert\UITextureAtlas.json  Avatars --debug --dpi 640</CommandLineArguments>
+    <CommandLineArguments>-f C#3 -v e:\code\tools\TPConvert\TPConvert\UITextureAtlas.json  Avatars --debug --dpi 160</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
