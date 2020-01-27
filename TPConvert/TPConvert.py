@@ -28,6 +28,7 @@ import os
 from TPConvert.FormatPlugin import FormatPlugin
 from TPConvert.FormatPluginCSharp import FormatPluginCSharp
 from TPConvert.FormatPluginCSharp2 import FormatPluginCSharp2
+from TPConvert.FormatPluginCSharp3 import FormatPluginCSharp3
 from TPConvert.FormatPluginFslAtlas import FormatPluginFslAtlas
 from TPConvert.FormatPluginBinaryTA1 import FormatPluginBinaryTA1
 from TPConvert.FormatPluginBinaryTA2 import FormatPluginBinaryTA2
@@ -40,7 +41,7 @@ __g_allowDevelopmentPlugins = False
 
 
 def GetTitle() -> str:
-    return 'TPConvert V0.2.5 alpha'
+    return 'TPConvert V0.2.6 alpha'
 
 
 def ShowTitleIfNecessary() -> None:
@@ -99,7 +100,7 @@ def EarlyArgumentParser() -> bool:
 
 
 def GetPluginList(allowDevPlugins: bool) -> List[FormatPlugin]:
-    return [FormatPluginCSharp(), FormatPluginCSharp(True), FormatPluginCSharp2(), FormatPluginFslAtlas(), FormatPluginBinaryTA1(), FormatPluginBinaryTA2()]
+    return [FormatPluginCSharp(), FormatPluginCSharp(True), FormatPluginCSharp2(), FormatPluginCSharp3(), FormatPluginFslAtlas(), FormatPluginBinaryTA1(), FormatPluginBinaryTA2()]
 
 
 def GetNames(entries: List[FormatPlugin]) -> List[str]:
