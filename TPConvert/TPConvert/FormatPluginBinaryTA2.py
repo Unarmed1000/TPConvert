@@ -31,7 +31,7 @@ class FormatPluginBinaryTA2(FormatPlugin):
     def __init__(self) -> None:
         super().__init__("bta2")
 
-    def Process(self, atlas: TexturePackerAtlas, dpi: int, outputFilename: str) -> None:
+    def Process(self, atlas: TexturePackerAtlas, outputFilename: str) -> None:
         pathInfo = self.__BuildPathDirectory(atlas.Entries)
         #self.__DebugPaths(atlas.Entries, pathInfo)
 

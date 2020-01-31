@@ -31,7 +31,7 @@ class FormatPluginCSharp(FormatPlugin):
         super().__init__("C#" if not enableScaleMod else "C#Scale")
         self.__EnableScaleMod = enableScaleMod
 
-    def Process(self, atlas: TexturePackerAtlas, dpi: int, outputFilename: str) -> None:
+    def Process(self, atlas: TexturePackerAtlas, outputFilename: str) -> None:
         enableScale = self.__EnableScaleMod
         list = []
         list.append('using System;')

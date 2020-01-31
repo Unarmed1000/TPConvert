@@ -65,7 +65,7 @@ class TexturePackerRectangle(object):
 
 
 class TexturePackerFrame(object):
-    def __init__(self, jsonDict: Dict[str,Any]) -> None:
+    def __init__(self, jsonDict: Dict[str,Any], defaultDPI: int) -> None:
         super().__init__()
         self.Filename = jsonDict["filename"]
         self.Frame = TexturePackerRectangle(jsonDict["frame"])
@@ -79,22 +79,37 @@ class TexturePackerFrame(object):
         self.Path = IOUtil.ToUnixStylePath(os.path.dirname(self.Filename))
         self.FullFilenameWithoutExt = IOUtil.Join(self.Path, self.FilenameWithoutExt)
 
+        self.DPI = self.__ParseDPI_Tag(self.FilenameWithoutExt, defaultDPI)
 
-def ExtractEntries(frames: List[Dict[str,Any]]) -> List[TexturePackerFrame]:
+    def __ParseDPI_Tag(self, strFilename: str, defaultValue: int) -> int:
+        if self.FilenameWithoutExt.endswith("dpi"):
+            index = self.FilenameWithoutExt.rfind('_')
+            if index >= 0:
+                strValue = self.FilenameWithoutExt[index+1:-3]
+                return self.__ParseInt(strValue, defaultValue)
+        return defaultValue
+
+    def __ParseInt(self, strVal: str, defaultValue: int) -> int:
+        try:
+            return int(strVal)
+        except ValueError:
+            return defaultValue
+
+def ExtractEntries(frames: List[Dict[str,Any]], defaultDPI: int) -> List[TexturePackerFrame]:
     entries = []
     for entry in frames:
-        entries.append(TexturePackerFrame(entry))
+        entries.append(TexturePackerFrame(entry, defaultDPI))
     return entries
 
 class TexturePackerAtlas(object):
-    def __init__(self, jsonDict: Dict[str,Any]) -> None:
+    def __init__(self, jsonDict: Dict[str,Any], defaultDPI: int) -> None:
         super().__init__()
 
         if not "frames" in jsonDict or not "meta" in jsonDict:
             raise Exception("Unknown json format")
 
         self.Header = TexturePackerHeader(jsonDict["meta"]);
-        self.Entries = ExtractEntries(jsonDict["frames"]) # type: List[TexturePackerFrame]
+        self.Entries = ExtractEntries(jsonDict["frames"], defaultDPI) # type: List[TexturePackerFrame]
         self.Name = IOUtil.GetFileNameWithoutExtension(self.Header.Image)
 
 

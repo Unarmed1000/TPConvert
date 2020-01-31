@@ -41,7 +41,7 @@ __g_allowDevelopmentPlugins = False
 
 
 def GetTitle() -> str:
-    return 'TPConvert V0.2.7 alpha'
+    return 'TPConvert V0.2.8 alpha'
 
 
 def ShowTitleIfNecessary() -> None:
@@ -66,9 +66,9 @@ def Process(formatPlugins: List[FormatPlugin], inputFilename: str, outputFilenam
     # Read the json file and convert it into python objects
     content = ReadBinaryFile(inputFilename)
     jsonDict = json.loads(content)
-    atlas = TexturePackerAtlas(jsonDict)
+    atlas = TexturePackerAtlas(jsonDict, int(dpi))
 
-    formatPlugin.Process(atlas, int(dpi), outputFilename)
+    formatPlugin.Process(atlas, outputFilename)
 
 
 def AddDefaultOptions(parser: argparse.ArgumentParser) -> None:

@@ -28,5 +28,5 @@ class FormatPlugin(object):
         super().__init__()
         self.Name = name
 
-    def Process(self, atlas: TexturePackerAtlas, dpi: int, outputFilename: str) -> None:
+    def Process(self, atlas: TexturePackerAtlas, outputFilename: str) -> None:
          raise NotImplementedError("FormatPlugin did not implement Process")

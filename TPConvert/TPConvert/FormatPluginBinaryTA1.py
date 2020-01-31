@@ -32,7 +32,7 @@ class FormatPluginBinaryTA1(FormatPlugin):
     def __init__(self) -> None:
         super().__init__("bta1")
 
-    def Process(self, atlas: TexturePackerAtlas, dpi: int, outputFilename: str) -> None:
+    def Process(self, atlas: TexturePackerAtlas, outputFilename: str) -> None:
         dstList = [] # type: List[int]
         AddHeader(dstList, 1);
         # make room for a number of bytes written entry and store the offset where it was written so we can pacth it later
