@@ -65,7 +65,7 @@ class TexturePackerRectangle(object):
 
 
 class TexturePackerFrame(object):
-    def __init__(self, jsonDict: Dict[str,Any], defaultDPI: int) -> None:
+    def __init__(self, jsonDict: Dict[str,Any], defaultDP: int) -> None:
         super().__init__()
         self.Filename = jsonDict["filename"]
         self.Frame = TexturePackerRectangle(jsonDict["frame"])
@@ -79,13 +79,14 @@ class TexturePackerFrame(object):
         self.Path = IOUtil.ToUnixStylePath(os.path.dirname(self.Filename))
         self.FullFilenameWithoutExt = IOUtil.Join(self.Path, self.FilenameWithoutExt)
 
-        self.DPI = self.__ParseDPI_Tag(self.FilenameWithoutExt, defaultDPI)
+        self.DP = self.__ParseDPI_Tag(self.FilenameWithoutExt, defaultDP)
 
     def __ParseDPI_Tag(self, strFilename: str, defaultValue: int) -> int:
-        if self.FilenameWithoutExt.endswith("dpi"):
+        strTag = "dp"
+        if self.FilenameWithoutExt.endswith(strTag):
             index = self.FilenameWithoutExt.rfind('_')
             if index >= 0:
-                strValue = self.FilenameWithoutExt[index+1:-3]
+                strValue = self.FilenameWithoutExt[index+1:-len(strTag)]
                 return self.__ParseInt(strValue, defaultValue)
         return defaultValue
 

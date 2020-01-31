@@ -59,7 +59,7 @@ class FormatPluginCSharp2(FormatPlugin):
             rectY = entry.Frame.Y - entry.SpriteSourceSize.Y
             rectWidth = entry.SourceSize.Width
             rectHeight = entry.SourceSize.Height
-            srcDP = entry.DPI
+            srcDP = entry.DP
             if srcDP == 160:
                 list.append('      {{ "{0}", new TextureAtlasImageInfo(new Rectangle({1}, {2}, {3}, {4}), new Rectangle({5}, {6}, {7}, {8})) }},'.format(entry.FullFilenameWithoutExt, rectX, rectY, rectWidth, rectHeight, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height))
             else:
