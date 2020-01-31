@@ -41,8 +41,8 @@ class FormatPluginCSharp3(FormatPlugin):
         list.append('//* (c) {0} company_name_here'.format(dateNow.year))
         list.append('//****************************************************************************************************************************************************')
         list.append('')
-        list.append('using MB.Base.MathEx;')
         list.append('using MB.Graphics2.TextureAtlas;')
+        list.append('using MB.Graphics2.UI;')
         list.append('using System.Collections.Generic;')
         list.append('')
         list.append('namespace MB')
@@ -67,9 +67,9 @@ class FormatPluginCSharp3(FormatPlugin):
             srcDP = entry.DP
 
             if srcDP == 160:
-                list.append('      {{ "{0}", new TextureAtlasImageInfo(new RectangleU({1}, {2}, {3}, {4}), new ThicknessU({5}, {6}, {7}, {8})) }},'.format(entry.FullFilenameWithoutExt, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height, trimLeft, trimTop, trimRight, trimBottom))
+                list.append('      {{ "{0}", new TextureAtlasImageInfo(new PxRectangleU({1}, {2}, {3}, {4}), new PxThicknessU({5}, {6}, {7}, {8})) }},'.format(entry.FullFilenameWithoutExt, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height, trimLeft, trimTop, trimRight, trimBottom))
             else:
-                list.append('      {{ "{0}", new TextureAtlasImageInfo(new RectangleU({1}, {2}, {3}, {4}), new ThicknessU({5}, {6}, {7}, {8}), {9}) }},'.format(entry.FullFilenameWithoutExt, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height, trimLeft, trimTop, trimRight, trimBottom, srcDP))
+                list.append('      {{ "{0}", new TextureAtlasImageInfo(new PxRectangleU({1}, {2}, {3}, {4}), new PxThicknessU({5}, {6}, {7}, {8}), {9}) }},'.format(entry.FullFilenameWithoutExt, entry.Frame.X, entry.Frame.Y, entry.Frame.Width, entry.Frame.Height, trimLeft, trimTop, trimRight, trimBottom, srcDP))
 
         list.append('    };')
         list.append('')
