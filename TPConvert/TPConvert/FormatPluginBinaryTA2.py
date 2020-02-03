@@ -45,7 +45,7 @@ class FormatPluginBinaryTA2(FormatPlugin):
             entryDict[pathEntry[2]+pathEntry[1]] = pathEntry
 
         entryList = []                  # type: List[int]
-        AddHeader(entryList, 2);
+        AddHeader(entryList, 0x1001);
         # make room for a number of bytes written entry and store the offset where it was written so we can pacth it later
         offset = len(entryList)
         AddUInt32(entryList, 0);
@@ -136,7 +136,7 @@ class FormatPluginBinaryTA2(FormatPlugin):
 
 
     def __AddPathList(self, entryList: List[int], pathList: List[Tuple[int,str]]) -> None:
-        AddEncodedUInt32(entryList, len(entryList))
+        AddEncodedUInt32(entryList, len(pathList))
         for entry in pathList:
             AddEncodedUInt32(entryList, entry[0])
             AddString(entryList, entry[1])

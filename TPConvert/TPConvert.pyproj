@@ -13,7 +13,7 @@
     <Name>TPConvert</Name>
     <RootNamespace>TPConvert</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-f bta3 -v e:\code\tools\TPConvert\TPConvert\UITextureAtlas.json  Avatars --debug --dpi 160</CommandLineArguments>
+    <CommandLineArguments>-f bta3 -v e:\Work\DemoFramework\Resources\Source\DFSimpleUI100\TextureAtlas\MainAtlas.json --debug</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
@@ -37,6 +37,7 @@
     <Compile Include="TPConvert\FormatPluginFslAtlas.py" />
     <Compile Include="TPConvert\FormatPluginCSharp.py" />
     <Compile Include="TPConvert\IOUtil.py" />
+    <Compile Include="TPConvert\Main.py" />
     <Compile Include="TPConvert\TexturePackerObjects.py" />
     <Compile Include="TPConvert\__init__.py" />
   </ItemGroup>

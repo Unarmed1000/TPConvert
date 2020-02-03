@@ -1,4 +1,5 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 #****************************************************************************************************************************************************
 #* BSD 3-Clause License
 #*
@@ -21,9 +22,11 @@
 #* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #****************************************************************************************************************************************************
 
-from TPConvert import PythonVersionCheck
-PythonVersionCheck.CheckVersion()
+import os
+import sys
 
-from TPConvert.Main import MainApp
-
-MainApp.Run()
+def CheckVersion():
+    # type: () -> None
+    if sys.version_info < (3, 5):
+        print("This script requires python 3.5+")
+        sys.exit(1)
