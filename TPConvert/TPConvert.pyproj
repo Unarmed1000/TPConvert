@@ -13,7 +13,7 @@
     <Name>TPConvert</Name>
     <RootNamespace>TPConvert</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-f bta2 -v e:\code\tools\TPConvert\TPConvert\UITextureAtlas.json  Avatars --debug --dpi 160</CommandLineArguments>
+    <CommandLineArguments>-f bta3 -v e:\code\tools\TPConvert\TPConvert\UITextureAtlas.json  Avatars --debug --dpi 160</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
@@ -27,6 +27,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="TPConvert.py" />
+    <Compile Include="TPConvert\FormatPluginBinaryTA3.py" />
     <Compile Include="TPConvert\FormatPluginBinaryTAUtil.py" />
     <Compile Include="TPConvert\FormatPlugin.py" />
     <Compile Include="TPConvert\FormatPluginBinaryTA1.py" />
