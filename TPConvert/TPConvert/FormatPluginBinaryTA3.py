@@ -66,8 +66,8 @@ class FormatPluginBinaryTA3(FormatPlugin):
 
             srcDP = entry.DP
 
-            self.__AddEntry(entryList, rectX, rectY, rectWidth, rectHeight, 
-                            trimLeft, trimTop, trimRight, trimBottom, 
+            self.__AddEntry(entryList, rectX, rectY, rectWidth, rectHeight,
+                            trimLeft, trimTop, trimRight, trimBottom,
                             srcDP, entryDict[entry.FullFilenameWithoutExt])
 
         # Write the number of bytes that were written to the extended header
@@ -102,7 +102,7 @@ class FormatPluginBinaryTA3(FormatPlugin):
 
         for entry in entries:
             if not entry.FullFilenameWithoutExt in reconstructedSet:
-                raise Exception("NotFound %s" % (entry.FullFilenameWithoutExt));
+                raise Exception("NotFound {0}".format(entry.FullFilenameWithoutExt));
 
 
     def __BuildPathDirectory(self, entries: List[TexturePackerFrame]) -> Tuple[List[Tuple[int,str]], List[Tuple[int,str,str]]]:
@@ -126,7 +126,7 @@ class FormatPluginBinaryTA3(FormatPlugin):
         return (listDirs, listFiles)
 
 
-    def __BuildPathList(self, listDirs: List[Tuple[int,str]], listFiles: List[Tuple[int,str,str]], 
+    def __BuildPathList(self, listDirs: List[Tuple[int,str]], listFiles: List[Tuple[int,str,str]],
                         entryDict: Dict[str, Dict[str, Any]], parentIndex: int, startIndex: int, parentName: str) -> int:
         totalIndex = startIndex
         for item in entryDict.items():
@@ -150,7 +150,7 @@ class FormatPluginBinaryTA3(FormatPlugin):
             AddEncodedUInt32(entryList, entry[0])
             AddString(entryList, entry[1])
 
-    def __AddEntry(self, entryList: List[int], pxRectX: int, pxRectY: int, pxRectWidth: int, pxRectHeight: int, 
+    def __AddEntry(self, entryList: List[int], pxRectX: int, pxRectY: int, pxRectWidth: int, pxRectHeight: int,
                    pxTrimLeft: int, pxTrimTop: int, pxTrimRight: int, pxTrimBottom: int, dp: int,
                    pathInfo: Tuple[int,str,str]) -> None:
         AddRectangleU(entryList, pxRectX, pxRectY, pxRectWidth, pxRectHeight)
